@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Fanlar va Studentlar</title>
+</head>
+<body>
+
+<div class="container mt-4">
+    <div class="row">
+        <!-- Fanlar qismi -->
+        <div class="col-md-4">
+            <h3 class="text-center">📚 Fanlar</h3>
+            <ul class="list-group">
+                <li class="list-group-item active">Fanlar ro'yxati</li>
+                {% for i in fan %}
+                <li class="list-group-item">{{i.f_name}}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <!-- Studentlar qismi -->
+         
+        <div class="col-md-8">
+            
+            <h3 class="text-center">👨‍🎓 Studentlar</h3>
+            <div class="text-center mt-4">
+                <a href="{% url 'add_student' %}" class="btn btn-success w-50 " style="margin-bottom: 10px;"> Yangi O'quvchi Qo'shish</a>
+            </div>
+            <table class="table table-bordered table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>Ism</th>
+                        <th>Familiya</th>
+                        <th>Telefon</th>
+                        <th>Email</th>
+                        <th>Fan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in student %}
+                    <tr>
+                        <td>{{ i.id }}</td>
+                        <td>{{ i.first_name }}</td>
+                        <td>{{ i.last_name }}</td>
+                        <td>{{ i.tel_num }}</td>
+                        <td>{{ i.email }}</td>
+                        <td>{{ i.fan }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                
+            </table>
+
+            <!-- O'quvchi qo'shish sahifasiga o'tish -->
+            <a href="{% url 'download_pdf' %}" class="btn btn-primary">📄 Studentlarni yuklash (PDF)</a>
+
+        </div>
+    </div>
+
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
