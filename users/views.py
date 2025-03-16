@@ -2,6 +2,8 @@ from reportlab.pdfgen import canvas
 from django.http import HttpResponse
 from django.shortcuts import render,redirect
 
+from users.forms import StudentForm
+
 from .models import *
 
 def home_page(request):
@@ -16,29 +18,40 @@ def home_page(request):
     return render(request=request,template_name='index.html',context=db)
 
 
-
-
 def add_student(request):
-    if request.method == "POST":
-        first_name = request.POST.get('first_name')
-        last_name = request.POST.get('last_name')
-        tel_num = request.POST.get('tel_num')
-        fan_id = request.POST.get('fan')
-        email = request.POST.get('email')
-        fan = Fanlar.objects.get(id=fan_id)
+    if request.method == 'POST':
+        form = StudentForm(request.POST)
+        if form.is_valid():
+            student = form.save()
+            return redirect('home')
+    else:
+        form = StudentForm()
+    return render(request=request,template_name='add_stu.html',context={'form':form})
 
-        Student.objects.create(
-            first_name=first_name,
-            last_name=last_name,
-            tel_num = tel_num,
-            email = email,
-            fan = fan
-        )
-        return redirect('home')
+
+
+
+# def add_student(request):
+#     if request.method == "POST":
+#         first_name = request.POST.get('first_name')
+#         last_name = request.POST.get('last_name')
+#         tel_num = request.POST.get('tel_num')
+#         fan_id = request.POST.get('fan')
+#         email = request.POST.get('email')
+#         fan = Fanlar.objects.get(id=fan_id)
+
+#         Student.objects.create(
+#             first_name=first_name,
+#             last_name=last_name,
+#             tel_num = tel_num,
+#             email = email,
+#             fan = fan
+#         )
+#         return redirect('home')
     
 
-    fanlar = Fanlar.objects.all()
-    return render(request= request,template_name='add_stu.html',context={"fanlar":fanlar})
+#     fanlar = Fanlar.objects.all()
+#     return render(request= request,template_name='add_stu.html',context={"fanlar":fanlar})
 
 
 
