@@ -9,7 +9,7 @@
 <body>
     <div class="container mt-5">
         <h2 class="text-center">O'quvchi Qo'shish</h2>
-        <form action="" method="post">
+        <form action="{% url 'update_stu' student.pk%}" method="post">
 
             {% csrf_token %}
             {{ form.as_p }}  

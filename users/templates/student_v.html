@@ -18,13 +18,13 @@
                     <th>Telefon</th>
                     <th>Email</th>
                     <th>Fan</th>
-                    <th>Delete</th>
                     <th>Update</th>
+                    <th>Delete</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>{{student_v.student_id}}</td>
+                    <td>{{student_v.id}}</td>
                     <td>{{student_v.first_name}}</td>
                     <td>{{student_v.last_name}}</td>
                     <td>{{student_v.tel_num}}</td>
@@ -36,6 +36,9 @@
                     <td>
                         <a href="{% url 'update_stu' student_v.id %}">
                             <button class="btn btn-warning btn-sm">Tahrirlash</button>
+                        </a>
+                        <a href="{% url 'delete_student' student_v.id %}">
+                            <button class="btn btn-warning btn-sm">O'chirish</button>
                         </a>
                         
                     </td>

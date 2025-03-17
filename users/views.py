@@ -94,7 +94,20 @@ def udate_student(request,student_id):
         
     else:
         form  = StudentForm(instance=student)
-    return render(request=request,template_name="update_stu.html", context={'form':form})
+    return render(request=request,template_name="update_stu.html", context={'form':form,"student":student})
+
+
+
+
+
+def delete_student(request,student_id):
+    student = get_object_or_404(Student,id=student_id)
+    student.delete()
+    
+    return redirect('home')
+
+
+
     
 
 
