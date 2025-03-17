@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>Fanlar va Studentlar</title>
 </head>
@@ -38,6 +40,7 @@
                         <th>Telefon</th>
                         <th>Email</th>
                         <th>Fan</th>
+                        <th>Ko'rish</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -49,6 +52,20 @@
                         <td>{{ i.tel_num }}</td>
                         <td>{{ i.email }}</td>
                         <td>{{ i.fan }}</td>
+                        <td>
+                            <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                <button type="button" class="btn btn-success">
+                                   
+                                       <a href="{% url 'student_v' i.pk%}">
+                                        <i class="bi bi-eye"></i>
+                                       </a>
+
+                                    
+                                </button>
+                            </div>
+                        </td>
+                        
+                   
                     </tr>
                     {% endfor %}
                 </tbody>

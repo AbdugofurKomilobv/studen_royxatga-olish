@@ -1,6 +1,6 @@
 from reportlab.pdfgen import canvas
 from django.http import HttpResponse
-from django.shortcuts import render,redirect
+from django.shortcuts import get_object_or_404, render,redirect
 
 from users.forms import StudentForm
 
@@ -72,6 +72,30 @@ def download_students_pdf(request):
     p.showPage()
     p.save()
     return response
+
+
+def view_full(request,student_id):
+    student_v = get_object_or_404(Student,id=student_id)
+    context = {
+        "student_v": student_v,
+
+    }
+    return render(request=request,template_name='student_v.html',context=context)
+
+
+
+def udate_student(request,student_id):
+    student = get_object_or_404(Student,id=student_id)
+    if request.method == "POST":
+        form = StudentForm(request.POST, instance=student)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+        
+    else:
+        form  = StudentForm(instance=student)
+    return render(request=request,template_name="update_stu.html", context={'form':form})
+    
 
 
 
