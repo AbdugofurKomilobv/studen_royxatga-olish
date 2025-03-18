@@ -30,13 +30,15 @@
                     <td>{{student_v.tel_num}}</td>
                     <td>{{student_v.fan}}</td>
                     <td>{{student_v.email}}</td>
-                    <td>
-                        <button class="btn btn-danger btn-sm">O'chirish</button>
-                    </td>
+               
                     <td>
                         <a href="{% url 'update_stu' student_v.id %}">
                             <button class="btn btn-warning btn-sm">Tahrirlash</button>
                         </a>
+                        </td>
+                        <td>
+
+                     
                         <a href="{% url 'delete_student' student_v.id %}">
                             <button class="btn btn-warning btn-sm">O'chirish</button>
                         </a>

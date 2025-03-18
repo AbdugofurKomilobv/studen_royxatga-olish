@@ -16,7 +16,7 @@ class Fanlar(models.Model):
 class Student(models.Model):
     first_name = models.CharField(max_length=128)
     last_name = models.CharField(max_length=128)
-    tel_num = models.IntegerField()
+    tel_num = models.BigIntegerField()
     fan = models.ForeignKey(Fanlar,on_delete=models.CASCADE)
     email = models.EmailField()
 
